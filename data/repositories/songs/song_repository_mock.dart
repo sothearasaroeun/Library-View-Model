@@ -17,6 +17,30 @@ class SongRepositoryMock implements SongRepository {
       artist: 'Mock Artist',
       duration: const Duration(minutes: 3, seconds: 20),
     ),
+    Song(
+      id: '101',
+      title: 'Mock Song 3',
+      artist: 'Mock Artist',
+      duration: const Duration(minutes: 2, seconds: 50),
+    ),
+    Song(
+      id: '102',
+      title: 'Mock Song 4',
+      artist: 'Mock Artist',
+      duration: const Duration(minutes: 3, seconds: 20),
+    ),
+    Song(
+      id: '101',
+      title: 'Mock Song 5',
+      artist: 'Mock Artist',
+      duration: const Duration(minutes: 2, seconds: 50),
+    ),
+    Song(
+      id: '102',
+      title: 'Mock Song 6',
+      artist: 'Mock Artist',
+      duration: const Duration(minutes: 3, seconds: 20),
+    ),
   ];
 
   @override

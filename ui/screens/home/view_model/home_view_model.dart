@@ -15,17 +15,28 @@ class HomeViewModel extends ChangeNotifier {
   HomeViewModel({required this.songRepository, required this.userHistoryRepository, required this.playerState });
 
   void init() {
+    _loadRecentSongs();
+    _loadRecommendedSongs();
+
+    playerState.addListener(_onPlayerChanged);
+  }
+
+  void _onPlayerChanged() {
+    notifyListeners();
+  }
+
+  void _loadRecentSongs() {
     List<String> recentSongIds = userHistoryRepository.getRecentSongIds();
 
-    _recentSongs = recentSongIds.map((id) => songRepository.fetchSongById(id)).whereType<Song>().toList();
+    _recentSongs = recentSongIds
+        .map((id) => songRepository.fetchSongById(id))
+        .whereType<Song>()
+        .toList();
+  }
 
+  void _loadRecommendedSongs() {
     List<Song> allSongs = songRepository.fetchSongs();
-
     _recommendedSongs = allSongs.where((song) => !_recentSongs.contains(song)).take(3).toList();
-
-    playerState.addListener(() {
-      notifyListeners();
-    });
   }
 
   List<Song> get recentSongs => _recentSongs;
@@ -38,9 +49,13 @@ class HomeViewModel extends ChangeNotifier {
       return playerState.currentSong == song;
     }
 
-  void start(Song song) {
+    void start(Song song) {
     playerState.start(song);
     userHistoryRepository.addSong(song.id);
+
+    _loadRecentSongs();
+    _loadRecommendedSongs();
+
     notifyListeners();
   }
 

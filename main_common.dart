@@ -54,6 +54,7 @@ class _MyAppState extends State<MyApp> {
               _currentIndex = index;
             });
           },
+          unselectedItemColor: Colors.grey,
           selectedItemColor: settingsState.theme.color,
           items: [
             BottomNavigationBarItem(
