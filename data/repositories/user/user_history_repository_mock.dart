@@ -1,10 +1,14 @@
-class UserHistoryRepository {
+import 'user_history_repository.dart';
+
+class UserHistoryRepositoryMock implements UserHistoryRepository {
   final List<String> _recentSongIds = [];
 
+  @override
   List<String> getRecentSongIds() {
     return _recentSongIds;
   }
 
+  @override
   void addSong(String songId) {
     _recentSongIds.remove(songId);
 

@@ -1,5 +1,7 @@
 import 'package:provider/provider.dart';
 import 'package:nested/nested.dart';
+import 'package:week4_practice/library_view_model/data/repositories/user/user_history_repository.dart';
+import 'package:week4_practice/library_view_model/data/repositories/user/user_history_repository_mock.dart';
  
 import 'main_common.dart';
 import 'data/repositories/settings/app_settings_repository_mock.dart';
@@ -23,6 +25,8 @@ List<SingleChildWidget> get devProviders {
     ChangeNotifierProvider<AppSettingsState>(
       create: (_) =>AppSettingsState(repository: appSettingsRepository)
     ),
+
+    Provider<UserHistoryRepository>(create: (_) => UserHistoryRepositoryMock()),
   ];
 }
 
